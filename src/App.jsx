@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -8,8 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+Shavonne is awesome!        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
