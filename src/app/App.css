@@ -1,0 +1,17 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.shav-header {
+
+}
+
+.shav-header-link {
+  font-size: 30px;
+  color: pink;
+}
+
+.shav-card {
+  text-align: center;
+}
