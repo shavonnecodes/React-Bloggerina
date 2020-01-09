@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 export class BlogEntryRepository {
-    url = 'http://localhost:8080/entries';
+    url = 'http://localhost:8080/';
     config = {
         headers: {}
     };
 
     getAllBlogEntries() {
         return new Promise((resolve, reject) => {
-            axios.get(`${this.url}`, this.config)
+            axios.get(`${this.url}/entries`, this.config)
                 .then(x => resolve(x.data))
                 .catch(x => {
                     alert(x);
@@ -19,7 +19,7 @@ export class BlogEntryRepository {
 
     getBlogEntryById(entryId) {
         return new Promise((resolve, reject) => {
-            axios.get(`${this.url}/${entryId}`, this.config)
+            axios.get(`${this.url}/entries/${entryId}`, this.config)
                 .then(x => resolve(x.data))
                 .catch(x => {
                     alert(x);
@@ -30,7 +30,7 @@ export class BlogEntryRepository {
 
     updateBlogEntry(entryId, blogEntry) {
         return new Promise((resolve, reject) => {
-            axios.put(`${this.url}/${entryId}`, blogEntry, this.config)
+            axios.put(`${this.url}/entries/${entryId}`, blogEntry, this.config)
                 .then(x => resolve(x.data))
                 .catch(x => {
                     alert(x);
@@ -41,7 +41,7 @@ export class BlogEntryRepository {
 
     addBlogEntry(entryId, blogEntry) {
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}`, blogEntry, this.config)
+            axios.post(`${this.url}/entries`, blogEntry, this.config)
                 .then(x => resolve(x.data))
                 .catch(x => {
                     alert(x);
@@ -52,7 +52,7 @@ export class BlogEntryRepository {
 
     deleteBlogEntry(entryId) {
         return new Promise((resolve, reject) => {
-            axios.put(`${this.url}/delete/${entryId}`, this.config)
+            axios.delete(`${this.url}/delete/${entryId}`, this.config)
                 .then(x => resolve(x.data))
                 .catch(x => {
                     alert(x);

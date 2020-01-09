@@ -1,6 +1,6 @@
 import React from 'react';
 import { BlogEntryRepository } from '../api/BlogEntryRepository';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +13,7 @@ import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 
-export class BlogEditor extends React.Component {
+export class AddToBlog extends React.Component {
 
     blogEntryRepository = new BlogEntryRepository();
 
@@ -32,7 +32,7 @@ export class BlogEditor extends React.Component {
                 <Row className="d-flex justify-content-center align-items-center shav-header">
                     <Col>
                         <Navbar expand="lg" id="shav-links">
-                            <Navbar.Brand href="#home">
+                            <Navbar.Brand href="/">
                                 <img
                                     alt=""
                                     src="https://i.imgur.com/a1JTXXB.png"
@@ -44,20 +44,22 @@ export class BlogEditor extends React.Component {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto" id="shav-nav" fill>
-                                    <Nav.Link href="#home">Home</Nav.Link>
-                                    <Nav.Link href="#link">Link</Nav.Link>
-                                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                    </NavDropdown>
+                                    <div id="shav-nav-link">
+                                        <Nav.Link href="/">Home</Nav.Link>
+                                    </div>
+                                    <div id="shav-nav-link">
+                                        <Nav.Link href="#">Edit</Nav.Link>
+                                    </div>
+                                    <div id="shav-nav-link">
+                                        <Nav.Link href="#">Not Real Link Playa</Nav.Link>
+                                    </div>
+                                    <div id="shav-nav-link">
+                                        <Nav.Link href="#">Example Link Silly</Nav.Link>
+                                    </div>
+                                    <div id="shav-nav-link">
+                                        <Nav.Link href="#">Notha Example</Nav.Link>
+                                    </div>
                                 </Nav>
-                                <Form inline>
-                                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                                    <Button variant="outline-dark">Search</Button>
-                                </Form>
                             </Navbar.Collapse>
                         </Navbar>
                     </Col>
@@ -68,8 +70,8 @@ export class BlogEditor extends React.Component {
                         <Image src="https://i.imgur.com/Dhj3wTX.jpg" id="shav-image" fluid />
                     </Col>
                     <Col>
-                        <Card id="shav-form">
-                            <Card.Body>
+                        <Card id="shav-edit-card">
+                            <Card.Body id="shav-edit-card-body">
                                 <Form>
                                     <Form.Row>
                                         <Form.Group as={Col} controlId="formGridEntryId">
@@ -102,59 +104,20 @@ export class BlogEditor extends React.Component {
                                         <Form.Control type="text" placeholder="e.g. Shae C."
                                             value={this.state.entryAuthor} onChange={e => this.setState({ entryAuthor: e.target.value })} />
                                     </Form.Group>
-
-                                    {/* i dont need a checkbox now but maybe something to think about later? */}
-
-                                    {/* <Form.Group id="formGridCheckbox">
-                                <Form.Check type="checkbox" label="Check me out" />
-                            </Form.Group> */}
-                                    <Container id="shav-form-btns">
-                                        <Button variant="dark" type="button" size="md" id="shav-form-btn"
-                                            onClick={e => this.onSubmit()}>
-                                            Submit
-                                        </Button>{' '}
-                                        <Button href="/" variant="dark" size="md">
-                                            Cancel
-                                        </Button>
-                                    </Container>
-
                                 </Form>
                             </Card.Body>
                         </Card>
+                        <Container id="shav-form-btns">
+                            <Button variant="outline-dark" type="button" size="md" id="shav-form-btn"
+                                onClick={e => this.onSubmit()}>
+                                Submit
+                            </Button>{' '}
+                            <Button href="/" variant="outline-dark" size="md">
+                                Cancel
+                            </Button>
+                        </Container>
                     </Col>
                 </Row>
-
-
-                {/* footer section */}
-                <Container className="shav-footer">
-                    <Row>
-                        <Col>
-                            <Navbar expand="lg" sticky="bottom">
-                                <Navbar.Brand href="#home">
-                                    Bloggerina&#8482;
-                                </Navbar.Brand>
-                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                                <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav className="mr-auto" id="shav-nav">
-                                        <Nav.Link href="#home">Home</Nav.Link>
-                                        <Nav.Link href="#link">Link</Nav.Link>
-                                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                            <NavDropdown.Divider />
-                                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                        </NavDropdown>
-                                    </Nav>
-                                    <Form inline>
-                                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                                        <Button variant="outline-success">Search</Button>
-                                    </Form>
-                                </Navbar.Collapse>
-                            </Navbar>
-                        </Col>
-                    </Row>
-                </Container>
             </Container>
 
 
@@ -165,10 +128,6 @@ export class BlogEditor extends React.Component {
     onSubmit() {
         var onSaveComplete = () => this.setState({ redirect: true })
 
-        // if (this.state.entryId) {
-        //     this.blogEntryRepository.updateBlogEntry(this.state.entryId, this.state)
-        //         .then(onSaveComplete);
-        // } else {
         this.blogEntryRepository.addBlogEntry(this.state.entryId, this.state)
             .then(onSaveComplete);
     }

@@ -1,18 +1,19 @@
 import React from 'react';
-import { BlogEntryList } from './BlogEntryList';
 import { BlogEntryRepository } from '../api/BlogEntryRepository';
+import { Redirect } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 
 
-export class Homepage extends React.Component {
+export class BlogEntryEditList extends React.Component {
 
     blogEntryRepository = new BlogEntryRepository();
 
@@ -22,10 +23,11 @@ export class Homepage extends React.Component {
 
     render() {
         return <>
-            <Container fluid="true" id="shav-home-container">
+            {this.state.redirect && <Redirect to="/" />}
+            <Container fluid="true">
                 <Row className="d-flex justify-content-center align-items-center shav-header">
                     <Col>
-                        <Navbar expand="lg">
+                        <Navbar expand="lg" id="shav-links">
                             <Navbar.Brand href="/">
                                 <img
                                     alt=""
@@ -42,7 +44,7 @@ export class Homepage extends React.Component {
                                         <Nav.Link href="/">Home</Nav.Link>
                                     </div>
                                     <div id="shav-nav-link">
-                                        <Nav.Link href="/edit">Edit</Nav.Link>
+                                        <Nav.Link href="#">Edit</Nav.Link>
                                     </div>
                                     <div id="shav-nav-link">
                                         <Nav.Link href="#">Not Real Link Playa</Nav.Link>
@@ -59,51 +61,41 @@ export class Homepage extends React.Component {
                     </Col>
                 </Row>
 
-                {/* <Row>
-                    <Col id="shav-img-container">
-                    <Image src="https://i.imgur.com/Dhj3wTX.jpg" id="shav-image" fluid/>
-                    </Col>
-                </Row> */}
-
-
-                <Row>
-                    <Col>
-                        <BlogEntryList entries={this.state.entries} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className="text-center shav-create-btn">
-                        <Button href="/create" variant="outline-dark" size="lg">Create New Entry</Button>
-                    </Col>
-                </Row>
-
-                {/* footer section */}
-                {/* <Container id="shav-footer">
+                <Container id="shav-edit-container" fluid>
                     <Row>
                         <Col>
-                            <Navbar expand="lg" fixed="bottom">
-                                <Navbar.Brand href="/">
-                                    Bloggerina&#8482;
-                                </Navbar.Brand>
-                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                                <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav id="shav-nav">
-                                        <Nav.Link href="/">Home</Nav.Link>
-                                        <Nav.Link href="/edit">Edit</Nav.Link>
-                                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                            <NavDropdown.Divider />
-                                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                        </NavDropdown>
-                                    </Nav>
-                                </Navbar.Collapse>
-                            </Navbar>
+                            <Table responsive id="shav-edit-table">
+                                <thead variant="dark">
+                                    <tr>
+                                        <th>Entry Id</th>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Date</th>
+                                        <th>Post</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.entries.map(blogEntry =>
+                                        <tr key={blogEntry.entryId}>
+                                            <td>{blogEntry.entryId}</td>
+                                            <td>{blogEntry.entryTitle}</td>
+                                            <td>{blogEntry.entryAuthor}</td>
+                                            <td>{blogEntry.entryDate}</td>
+                                            <td>{blogEntry.entryPost}</td>
+                                            <td>
+                                                <Button href={`/entries/${blogEntry.entryId}`} variant="outline-dark btn-sm">Edit</Button>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </Table>
                         </Col>
                     </Row>
-                </Container> */}
+                </Container>
             </Container>
+
+
         </>
     }
 
