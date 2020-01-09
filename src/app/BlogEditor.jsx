@@ -1,6 +1,6 @@
 import React from 'react';
-import { BlogEntryList } from './BlogEntryList';
 import { BlogEntryRepository } from '../api/BlogEntryRepository';
+import { Redirect, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,19 +10,24 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
+import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 
-
-export class Homepage extends React.Component {
+export class BlogEditor extends React.Component {
 
     blogEntryRepository = new BlogEntryRepository();
 
     state = {
-        entries: []
-    };
+        entryId: "",
+        entryTitle: "",
+        entryAuthor: "",
+        entryPost: "",
+        entryDate: ""
+    }
 
     render() {
         return <>
+            {this.state.redirect && <Redirect to="/" />}
             <Container fluid="true">
                 <Row className="d-flex justify-content-center align-items-center shav-header">
                     <Col>
@@ -58,23 +63,67 @@ export class Homepage extends React.Component {
                     </Col>
                 </Row>
 
-                {/* <Row>
-                    <Col id="shav-img-container">
-                    <Image src="https://i.imgur.com/Dhj3wTX.jpg" id="shav-image" fluid/>
-                    </Col>
-                </Row> */}
-
-
                 <Row>
                     <Col>
-                        <BlogEntryList entries={this.state.entries} />
+                        <Image src="https://i.imgur.com/Dhj3wTX.jpg" id="shav-image" fluid />
+                    </Col>
+                    <Col>
+                        <Card id="shav-form">
+                            <Card.Body>
+                                <Form>
+                                    <Form.Row>
+                                        <Form.Group as={Col} controlId="formGridEntryId">
+                                            <Form.Label>Blog Entry Id</Form.Label>
+                                            <Form.Control type="text" placeholder="e.g. 13"
+                                                value={this.state.entryId} onChange={e => this.setState({ entryId: e.target.value })} />
+                                        </Form.Group>
+
+                                        <Form.Group as={Col} controlId="formGridEntryDate">
+                                            <Form.Label>Creation Date</Form.Label>
+                                            <Form.Control type="text" placeholder="e.g. Jan 7. 2020"
+                                                value={this.state.entryDate} onChange={e => this.setState({ entryDate: e.target.value })} />
+                                        </Form.Group>
+                                    </Form.Row>
+
+                                    <Form.Group controlId="formGridEntryTitle">
+                                        <Form.Label>Blog Entry Title</Form.Label>
+                                        <Form.Control type="text" placeholder="e.g. Why Today Was A Good Ass Day - Meow!"
+                                            value={this.state.entryTitle} onChange={e => this.setState({ entryTitle: e.target.value })} />
+                                    </Form.Group>
+
+                                    <Form.Group controlId="formGridEntryPost">
+                                        <Form.Label>And what's on your mind today?</Form.Label>
+                                        <textarea className="form-control" rows="6" placeholder="e.g. Hi, my name is Shae and I'm going to tell you why today was a good ass day! For starters.."
+                                            value={this.state.entryPost} onChange={e => this.setState({ entryPost: e.target.value })}></textarea>
+                                    </Form.Group>
+
+                                    <Form.Group controlId="formGridEntryAuthor">
+                                        <Form.Label>Created By:</Form.Label>
+                                        <Form.Control type="text" placeholder="e.g. Shae C."
+                                            value={this.state.entryAuthor} onChange={e => this.setState({ entryAuthor: e.target.value })} />
+                                    </Form.Group>
+
+                                    {/* i dont need a checkbox now but maybe something to think about later? */}
+
+                                    {/* <Form.Group id="formGridCheckbox">
+                                <Form.Check type="checkbox" label="Check me out" />
+                            </Form.Group> */}
+                                    <Container id="shav-form-btns">
+                                        <Button variant="dark" type="button" size="md" id="shav-form-btn"
+                                            onClick={e => this.onSubmit()}>
+                                            Submit
+                                        </Button>{' '}
+                                        <Button href="/" variant="dark" size="md">
+                                            Cancel
+                                        </Button>
+                                    </Container>
+
+                                </Form>
+                            </Card.Body>
+                        </Card>
                     </Col>
                 </Row>
-                <Row>
-                    <Col className="text-center shav-create-btn">
-                    <Button href="/create" variant="outline-dark" size="lg">Create New Entry</Button>
-                    </Col>
-                </Row>
+
 
                 {/* footer section */}
                 <Container className="shav-footer">
@@ -107,14 +156,20 @@ export class Homepage extends React.Component {
                     </Row>
                 </Container>
             </Container>
+
+
         </>
     }
 
-    componentDidMount() {
-        this.blogEntryRepository.getAllBlogEntries()
-            .then(entries =>
-                this.setState({
-                    entries: entries
-                }));
+
+    onSubmit() {
+        var onSaveComplete = () => this.setState({ redirect: true })
+
+        // if (this.state.entryId) {
+        //     this.blogEntryRepository.updateBlogEntry(this.state.entryId, this.state)
+        //         .then(onSaveComplete);
+        // } else {
+        this.blogEntryRepository.addBlogEntry(this.state.entryId, this.state)
+            .then(onSaveComplete);
     }
 }

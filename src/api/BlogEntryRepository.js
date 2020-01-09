@@ -41,7 +41,7 @@ export class BlogEntryRepository {
 
     addBlogEntry(entryId, blogEntry) {
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/${entryId}`, blogEntry, this.config)
+            axios.post(`${this.url}`, blogEntry, this.config)
                 .then(x => resolve(x.data))
                 .catch(x => {
                     alert(x);

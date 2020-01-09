@@ -3,22 +3,27 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import CardDeck from 'react-bootstrap/CardDeck';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export const BlogEntryList = props => {
 
     return <>
 
-        <CardDeck>
+        <CardDeck bsPrefix="shav-carddeck">
             {props.entries.map(blogEntry =>
-                <Card className="shav-card">
+                <Card id="shav-card" border="light">
                     <Card.Header as="h2">{blogEntry.entryTitle}</Card.Header>
-                    <Card.Body>
+                    <Card.Body id="shav-post">
                         <Card.Title>{blogEntry.entryAuthor}</Card.Title>
                         <Card.Text>
-                            {blogEntry.entryPost}
+                            <div id="inner">
+                                {blogEntry.entryPost}
+                            </div>
                         </Card.Text>
                         {/* think about using this as a "read more" button */}
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="dark btn-sm" disabled>Read More</Button>
                     </Card.Body>
                     <Card.Footer className="text-muted">{blogEntry.entryDate}</Card.Footer>
                 </Card>

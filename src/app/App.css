@@ -3,15 +3,47 @@
   padding: 0px;
 }
 
-.shav-header {
-
+html, body {
+  height: 100%;
 }
 
-.shav-header-link {
-  font-size: 30px;
-  color: pink;
+
+.shav-carddeck {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.shav-card {
+#shav-post {
+  overflow: auto;
+}
+
+#shav-nav {
+  margin-left: 50px;
+}
+
+#shav-card {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 400px;
+  height: 400px;
+  padding: 20px;
+  margin: 20px;
+  line-height: 1.6;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, .05);
+}
+
+.shav-create-btn{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+#shav-form {
+  margin-bottom: 100px;
+}
+
+#shav-form-btns {
   text-align: center;
 }
