@@ -10,6 +10,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
+import Image from 'react-bootstrap/Image';
 
 
 export class Homepage extends React.Component {
@@ -59,11 +60,11 @@ export class Homepage extends React.Component {
                     </Col>
                 </Row>
 
-                {/* <Row>
+                <Row>
                     <Col id="shav-img-container">
-                    <Image src="https://i.imgur.com/Dhj3wTX.jpg" id="shav-image" fluid/>
+                    {/* <Image src="https://i.imgur.com/1V5vDI2.png" id="shav-image" fluid/> */}
                     </Col>
-                </Row> */}
+                </Row>
 
 
                 <Row>

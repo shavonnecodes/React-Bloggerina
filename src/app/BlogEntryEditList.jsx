@@ -44,7 +44,7 @@ export class BlogEntryEditList extends React.Component {
                                         <Nav.Link href="/">Home</Nav.Link>
                                     </div>
                                     <div id="shav-nav-link">
-                                        <Nav.Link href="#">Edit</Nav.Link>
+                                        <Nav.Link href="/edit">Edit</Nav.Link>
                                     </div>
                                     <div id="shav-nav-link">
                                         <Nav.Link href="#">Not Real Link Playa</Nav.Link>
@@ -93,7 +93,19 @@ export class BlogEntryEditList extends React.Component {
                         </Col>
                     </Row>
                 </Container>
+
+                <Container id="shav-detail-btn-container">
+                    <Row>
+                        <Col>
+                            <Button href="/" variant="outline-dark" size="md" id="shav-return-home-btn">
+                                Return to Home
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
+
             </Container>
+
 
 
         </>

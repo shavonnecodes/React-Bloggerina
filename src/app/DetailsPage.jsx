@@ -48,7 +48,7 @@ export class DetailsPage extends React.Component {
                                         <Nav.Link href="/">Home</Nav.Link>
                                     </div>
                                     <div id="shav-nav-link">
-                                        <Nav.Link href="#">Edit</Nav.Link>
+                                        <Nav.Link href="/edit">Edit</Nav.Link>
                                     </div>
                                     <div id="shav-nav-link">
                                         <Nav.Link href="#">Not Real Link Playa</Nav.Link>
@@ -91,6 +91,16 @@ export class DetailsPage extends React.Component {
                         </Container>
                     </Col>
                 </Row>
+
+                <Container id="shav-detail-btn-container">
+                    <Row>
+                        <Col>
+                            <Button href="/edit" variant="outline-dark" size="md" id="shav-detail-btn">
+                                Return to Edit Page
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
             </Container>
 
 
