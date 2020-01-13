@@ -71,19 +71,11 @@ export class AddToBlog extends React.Component {
                         <Card id="shav-edit-card">
                             <Card.Body id="shav-edit-card-body">
                                 <Form>
-                                    <Form.Row>
-                                        <Form.Group as={Col} controlId="formGridEntryId">
-                                            <Form.Label>Blog Entry Id</Form.Label>
-                                            <Form.Control type="text" placeholder="e.g. 13"
-                                                value={this.state.entryId} onChange={e => this.setState({ entryId: e.target.value })} />
-                                        </Form.Group>
-
-                                        <Form.Group as={Col} controlId="formGridEntryDate">
-                                            <Form.Label>Creation Date</Form.Label>
-                                            <Form.Control type="text" placeholder="e.g. Jan 7. 2020"
-                                                value={this.state.entryDate} onChange={e => this.setState({ entryDate: e.target.value })} />
-                                        </Form.Group>
-                                    </Form.Row>
+                                    <Form.Group controlId="formGridEntryDate">
+                                        <Form.Label>Creation Date</Form.Label>
+                                        <Form.Control type="text" placeholder="e.g. Jan 7. 2020"
+                                            value={this.state.entryDate} onChange={e => this.setState({ entryDate: e.target.value })} />
+                                    </Form.Group>
 
                                     <Form.Group controlId="formGridEntryTitle">
                                         <Form.Label>Blog Entry Title</Form.Label>

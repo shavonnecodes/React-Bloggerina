@@ -5,12 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import Image from 'react-bootstrap/Image';
 
 
 export class Homepage extends React.Component {
@@ -62,7 +58,6 @@ export class Homepage extends React.Component {
 
                 <Row>
                     <Col id="shav-img-container">
-                    {/* <Image src="https://i.imgur.com/1V5vDI2.png" id="shav-image" fluid/> */}
                     </Col>
                 </Row>
 
